@@ -48,6 +48,8 @@ Elle contiendra en plus :
 - un champ date `lastConnection` qui contiendra la date de dernière connexion de l'utilisateur. Ce champ sera donc à mettre à jour à chaque fois qu'un utilisateur se connecte avec succès
 - un champ integer `failedAuth` contenant le nombre de tentatives de connexions échouées. Ce champ sera par défaut à `0` et devra être incrémenté de `1` à chaque fois qu'une tentative de connexion pour un utilisateur aura échoué (si l'adresse email renseignée est donc bonne, mais que le mot de passe est quant à lui incorrect)
 
+***Note : pour le nombre de tentatives d'authentification échouées, vous devrez écouter un événement de Lexik. Pour récupérer les identifiants saisis, explorez les méthodes disponibles de linstance d'événement que vous récupérez***
+
 > Entité : Artist
 
 | Champ | Type | Commentaires |
@@ -113,16 +115,34 @@ Les endpoints de la ressource `User` seront accessibles uniquement aux utilisate
 
 #### Sérialisation & DTO
 
-Les informations d'un artiste devront inclure :
+Artiste :
 
 - ID
 - Nom
 - Année de début de carrière
 - Nombre d'albums sortis
 - Nombre de fans (utilisateurs ayant ajouté l'artiste en favori)
+- Styles
+  - Nom
 
-Les informations d'un utilisateur devront inclure :
+Utilisateur :
 
 - ID
 - email
 - Nombre d'artistes favoris
+- Artistes favoris
+  - Nom
+  - Année de début de carrière
+
+Style :
+
+- ID
+- Nom
+
+Album :
+
+- ID
+- Nom
+- Année de sortie
+- Artiste
+  - Nom
